@@ -43,15 +43,17 @@
           <input type="time" ng-model="wake">
         </label>
         <label class="item item-input">
+          <!-- TODO If there is a change for the Pre-sleep model, have a button appear that says update -->
           <span class="input-label">Pre-Sleep</span>
-          <input type="time" ng-model="sleep">
+          <input type="time" ng-blur="setPreSleep()" ng-model="preSleepTime">
         </label>
       </div>
 
 
       <h3>Current Time:{{ currentTime }}</h3>
        <h3>wake:{{ wakeTime }}</h3>
-        <h3>timeToWake(ms):{{ diffMs }}</h3>
+        <h3>timeToWake(ms):{{ wakeDiffMs }}</h3>
+        <h3>pre sleep diffms: {{ preSleepDiffMs }}</h3>
     <div class="padding">
              <button ng-click="setWake()" class="button button-block button-outline button-positive">Sleep Now
               </button>
