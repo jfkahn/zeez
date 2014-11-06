@@ -18,6 +18,7 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
+
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
@@ -30,19 +31,22 @@
       <ion-content ng-controller="MainController as main">
 
 
-            <button ng-click="toggleLights()" class=" button button-full button-positive icon-right ion-ios7-lightbulb button-large">Turn On All Lights</button>
+            <button ng-click="toggleLights()" class=" button button-full button-positive icon-right ion-ios7-lightbulb button-large">Light Switch!</button>
 
     <!-- Input wake up and pre-sleep times -->
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Wakeup</span>
-          <input type="time">
+          <input type="time" ng-model="wake" ng-change="setWake()">
         </label>
         <label class="item item-input">
           <span class="input-label">Pre-Sleep</span>
-          <input type="time">
+          <input type="time" ng-model="sleep">
         </label>
       </div>
+
+    <!--   <h1>Wake:{{wake}}</h1>
+      <h1>Sleep:{{sleep}}</h1> -->
 
       </ion-content>
     </ion-pane>
