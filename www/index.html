@@ -17,6 +17,7 @@
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+    <script src="lib/moment/moment.js"></script>
 
 
     <!-- your app's js -->
@@ -30,14 +31,16 @@
       </ion-header-bar>
       <ion-content ng-controller="MainController as main">
 
+          <div class="padding">
+            <button ng-click="toggleLights()" class=" button button-block button-positive icon-right ion-ios7-lightbulb button-large">Light Switch!</button>
+          </div>
 
-            <button ng-click="toggleLights()" class=" button button-full button-positive icon-right ion-ios7-lightbulb button-large">Light Switch!</button>
 
     <!-- Input wake up and pre-sleep times -->
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Wakeup</span>
-          <input type="time" ng-model="wake" ng-change="setWake()">
+          <input type="time" ng-model="wake">
         </label>
         <label class="item item-input">
           <span class="input-label">Pre-Sleep</span>
@@ -45,8 +48,16 @@
         </label>
       </div>
 
-    <!--   <h1>Wake:{{wake}}</h1>
-      <h1>Sleep:{{sleep}}</h1> -->
+
+      <h3>Current Time:{{ currentTime }}</h3>
+       <h3>wake:{{ wakeTime }}</h3>
+        <h3>timeToWake(ms):{{ diffMs }}</h3>
+    <div class="padding">
+             <button ng-click="setWake()" class="button button-block button-outline button-positive">Sleep Now
+              </button>
+    </div>
+
+
 
       </ion-content>
     </ion-pane>

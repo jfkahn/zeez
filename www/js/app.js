@@ -20,9 +20,31 @@ angular.module('zeez', ['ionic'])
     //
     //console.log($timeout.cancel(timeoutPromise))
     //the timeout function below calls sunrise in milliseconds
-    var timeToSunrise = 5000;
-    var timeoutPromise = $timeout(function(){$scope.simulateSunRise()}, timeToSunrise);
+
+    var timeoutPromise = $timeout(function(){$scope.simulateSunRise()}, $scope.timeToSunrise($scope.wake));
     console.log($scope.wake);
+   };
+
+   $scope.setPreSleep = function () {
+
+   }
+
+   $scope.timeToSunrise = function(wakeTime){
+      //get milliseconds between now and set wake time tomorrow
+      $scope.currentTime = moment().format("HH:mm:s a");
+      $scope.now = moment();
+      $scope.wakeTime = moment(wakeTime, "HH:mm")
+      $scope.diffMs = $scope.wakeTime.diff($scope.now)
+
+      //if diffms is negative, meaning the current time is after the wake time, add one day to wake time
+      if ($scope.diffMs < 0) {
+        $scope.wakeTime.add(1, 'days')
+        $scope.diffMs = $scope.wakeTime.diff($scope.now)
+        return $scope.diffMs
+      }
+      else {
+        return $scope.diffMs
+      }
    };
 
     $scope.wakeUp = function () {
