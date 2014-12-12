@@ -17,30 +17,69 @@
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+    <script src="lib/moment/moment.js"></script>
+
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter">
+  <body ng-app="zeez">
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
         <h1 class="title">ZeeZ</h1>
       </ion-header-bar>
-      <ion-content>
+      <ion-content ng-controller="MainController as main">
 
-      <a class=" button button-full button-positive icon-right ion-ios7-lightbulb button-large">Turn On All Lights</a>
+          <div class="padding">
+            <button ng-click="toggleLights()" class=" button button-block button-positive icon-right ion-ios7-lightbulb button-large">Light Switch!</button>
+          </div>
 
+           <div class="padding">
+            <button ng-click="simulateSunRiseDemo()" class=" button button-block button-positive icon-right ion-ios7-lightbulb button-large">Sunrise!</button>
+          </div>
+
+          <div class="padding">
+            <button ng-click="simulateDayDemo()" class=" button button-block button-positive icon-right ion-ios7-lightbulb button-large">Day</button>
+          </div>
+
+          <div class="padding">
+            <button ng-click="simulateEveningDemo()" class=" button button-block button-positive icon-right ion-ios7-lightbulb button-large">Evening</button>
+          </div>
+
+          <div class="padding">
+            <button ng-click="simulatePreSleepDemo()" class=" button button-block button-positive icon-right ion-ios7-lightbulb button-large">PreSleep!</button>
+          </div>
+
+           <div class="padding">
+            <button ng-click="simulateSleepDemo()" class=" button button-block button-positive icon-right ion-ios7-lightbulb button-large">Sleep</button>
+          </div>
+
+
+    <!-- Input wake up and pre-sleep times -->
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Wakeup</span>
-          <input type="time">
+          <input type="time" ng-model="wake">
         </label>
         <label class="item item-input">
+          <!-- TODO If there is a change for the Pre-sleep model, have a button appear that says update -->
           <span class="input-label">Pre-Sleep</span>
-          <input type="time">
+          <input type="time" ng-blur="setPreSleep()" ng-model="preSleepTime">
         </label>
       </div>
+
+
+      <h3>Current Time:{{ currentTime }}</h3>
+       <h3>wake:{{ wakeTime }}</h3>
+        <h3>timeToWake(ms):{{ wakeDiffMs }}</h3>
+        <h3>pre sleep diffms: {{ preSleepDiffMs }}</h3>
+    <div class="padding">
+             <button ng-click="setWake()" class="button button-block button-outline button-positive">Sleep Now
+              </button>
+    </div>
+
+
 
       </ion-content>
     </ion-pane>
